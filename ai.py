@@ -3,12 +3,21 @@
 from game import Board
 import gensim.downloader as api
 
-print("Loading word vectors...")
-model = api.load('glove-wiki-gigaword-100')
-print("Loaded.")
+# Global variable to cache the model
+_model = None
+
+def get_model():
+    """Load and cache the word vector model"""
+    global _model
+    if _model is None:
+        print("Loading word vectors...")
+        _model = api.load('glove-wiki-gigaword-100')
+        print("Loaded.")
+    return _model
 
 
 def cosine_similarity(word1, word2):
+    model = get_model()
     return model.similarity(word1, word2)
 
 
@@ -42,7 +51,7 @@ if __name__ == "__main__":
     board.display_spymaster_board()
     # Try your own clue and number here:
     clue = input("Enter your clue: ")
-    number = input("Enter your number: ")
+    number = int(input("Enter your number: "))
 
     guesses = guess_words(clue, number, board)
     print(f"Clue: {clue} ({number})")
