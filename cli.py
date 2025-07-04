@@ -9,26 +9,6 @@ WORDS = [
     'Octopus','Pyramid','Quartz','Rainbow','Satellite','Temple','Universe','Volcano','Window','Yogurt'
 ]
 
-def display_board(board):
-    for i, card in enumerate(board.cards):
-        if card.revealed:
-            r = card.role[0]
-            print(f"[{r}:{card.word:^10}]", end=' ')
-        else:
-            print(f"[ {card.word:^10} ]", end=' ')
-        if (i + 1) % 5 == 0:
-            print()
-
-
-def display_spymaster_board(board):
-    print("\nSpymaster view (roles revealed):")
-    for i, card in enumerate(board.cards):
-        symbol = card.role[0]
-        print(f"[{symbol}:{card.word:^10}]", end=' ')
-        if (i + 1) % 5 == 0:
-            print()
-    print()
-
 
 def main():
     starting = random.choice(['Red', 'Blue'])
@@ -38,7 +18,7 @@ def main():
 
     while True:
         print("\nBoard state:")
-        display_board(board)
+        board.display_board()
         display_spymaster_board(board)
         winner = board.check_win()
         if winner:

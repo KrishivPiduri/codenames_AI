@@ -17,6 +17,25 @@ class Board:
         random.shuffle(roles)
         self.cards = [Card(w, r) for w, r in zip(selected, roles)]
 
+    def display_board(self):
+        for i, card in enumerate(self.cards):
+            if card.revealed:
+                r = card.role[0]
+                print(f"[{r}:{card.word:^10}]", end=' ')
+            else:
+                print(f"[ {card.word:^10} ]", end=' ')
+            if (i + 1) % 5 == 0:
+                print()
+
+    def display_spymaster_board(self):
+        print("\nSpymaster view (roles revealed):")
+        for i, card in enumerate(self.cards):
+            symbol = card.role[0]
+            print(f"[{symbol}:{card.word:^10}]", end=' ')
+            if (i + 1) % 5 == 0:
+                print()
+        print()
+
     def reveal_card(self, guess_word):
         for card in self.cards:
             if card.word.lower() == guess_word.lower():

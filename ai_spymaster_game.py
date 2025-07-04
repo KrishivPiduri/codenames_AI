@@ -21,18 +21,6 @@ class AIPlayer:
             return None, 0
         return choices[0], 1
 
-
-def display_board(board):
-    for i, card in enumerate(board.cards):
-        if card.revealed:
-            r = card.role[0]
-            print(f"[{r}:{card.word:^10}]", end=' ')
-        else:
-            print(f"[ {card.word:^10} ]", end=' ')
-        if (i + 1) % 5 == 0:
-            print()
-
-
 def main():
     starting = random.choice(['Red', 'Blue'])
     board = Board(WORDS, starting)
@@ -43,7 +31,7 @@ def main():
 
     while True:
         print("\nCurrent board:")
-        display_board(board)
+        board.display_board()()
         # check win
         win = board.check_win()
         if win:
