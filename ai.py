@@ -39,10 +39,10 @@ if __name__ == "__main__":
     ]
 
     board = Board(word_list, starting_team='Red')
-    board.
+    board.display_spymaster_board()
     # Try your own clue and number here:
-    clue = "space"
-    number = 2
+    clue = input("Enter your clue: ")
+    number = input("Enter your number: ")
 
     guesses = guess_words(clue, number, board)
     print(f"Clue: {clue} ({number})")
